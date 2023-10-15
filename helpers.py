@@ -3,7 +3,7 @@ import pygame
 LEFT = 0
 RIGHT = 1
 
-SCREEN_SCALE = 1
+SCREEN_SCALE = 2
 SCREEN_WIDTH = 640 * SCREEN_SCALE
 SCREEN_HEIGHT = 480 * SCREEN_SCALE
 
@@ -21,11 +21,12 @@ CLOSE_TILES_OFFSETS = [(-1,-1),(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1)]
 def load_image(path):
     image = pygame.image.load(BASE_DIR + path).convert()
     image.set_colorkey((0,0,0))
+    print(image.get_size())
     return image
 
 
 def pixelToTile(pos, tile_size=16):
-    return (pos[0] // tile_size, pos[1] //tile_size)
+    return (int(pos[0] // tile_size), int(pos[1] //tile_size))
 
 def tileToPixel(pos, tile_size=16):
     return (pos[0] * tile_size, pos[1] * tile_size)
