@@ -1,9 +1,10 @@
 import pygame
+import os
 
 LEFT = 0
 RIGHT = 1
 
-SCREEN_SCALE = 2
+SCREEN_SCALE = 1
 SCREEN_WIDTH = 640 * SCREEN_SCALE
 SCREEN_HEIGHT = 480 * SCREEN_SCALE
 
@@ -17,6 +18,13 @@ BASE_DIR = "images/"
 
 PHYSICS_TILES = {"grass", "stone"}
 CLOSE_TILES_OFFSETS = [(-1,-1),(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1)]
+
+def load_images(path):
+    images = []
+    for img_name in sorted(os.listdir(BASE_DIR + path)):
+        images.append(load_image(path + '/' + img_name))
+    return images
+
 
 def load_image(path):
     image = pygame.image.load(BASE_DIR + path).convert()

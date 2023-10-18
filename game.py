@@ -15,12 +15,13 @@ class Game:
         self.clock = pygame.time.Clock()
         self.player = Player(self, (50,50))
         self.movement = [False, False]
+        self.redTiles = []
 
 
         self.assets = {
             "player": load_image('player.png'),
             "background": load_image("background.png"),
-            "clouds": load_image("cloud.png")
+            "clouds": load_images("clouds/")
         }
         self.clouds = Clouds(self.assets['clouds'])
 
@@ -37,6 +38,8 @@ class Game:
                         self.movement[LEFT] = True
                     if event.key == pygame.K_d:
                         self.movement[RIGHT] = True
+                    if event.key == pygame.K_SPACE:
+                        self.player.jump()
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_a:
@@ -56,10 +59,14 @@ class Game:
     def render(self):
         self.display.blit(self.assets['background'], (0,0))
         self.tilemap.render(self.display)
-        self.player.render(self.display)
         self.clouds.render(self.display)
-        self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0,0))
+        self.player.render(self.display)
 
+        for rect in self.redTiles:
+            pygame.draw.rect(self.display, (255,0,0), rect)
+
+
+        self.screen.blit(pygame.transform.scale(self.display, self.screen.get_size()), (0,0))
         pygame.display.update()
         self.clock.tick(DESIRED_FPS)
 

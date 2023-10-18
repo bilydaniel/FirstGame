@@ -9,11 +9,8 @@ class Player(PhysicsEntity):
         super().update(movement)
 
 
-
-
-
-
-
-
     def render(self, surf):
         super().render(surf)
+
+    def jump(self):
+        self.velocity[1] = -3

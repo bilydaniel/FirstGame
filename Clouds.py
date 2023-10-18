@@ -21,7 +21,7 @@ class Clouds:
         self.clouds = []
         for i in range(number_of_clouds):
             position = (random.random() * 99999, random.random() * 99999)
-            img = images #TODO poslat vic obrazku, vybrat jeden
+            img = random.choice(images) #TODO poslat vic obrazku, vybrat jeden
             speed = random.random() * 0.05 + 0.05
             depth = random.random() * 0.6 + 0.2
             self.clouds.append(Cloud(position, speed, depth, img))

@@ -1,0 +1,5 @@
+- opravit kolize
+- dodelat mraky
+- udelat kameru
+- udelat bloky
+- editor
